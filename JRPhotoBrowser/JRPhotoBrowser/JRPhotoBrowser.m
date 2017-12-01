@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) UIView	*fromView;
 
+@property (nonatomic, assign) CGRect	sourceFrame;
+
 @end
 
 @implementation JRPhotoBrowser
@@ -36,6 +38,7 @@
 }
 
 - (void)setFromView:(UIView *)fromView {
+	self.sourceFrame = fromView.frame;
 	_fromView = [[UIView alloc] initWithFrame:fromView.frame];
 	_fromView.backgroundColor = [UIColor redColor];
 }
@@ -68,6 +71,13 @@
 	}];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	
+	[UIView animateWithDuration:0.3 animations:^{
+		self.fromView.frame = self.sourceFrame;
+	}];
+}
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 	[self dismissViewControllerAnimated:YES completion:nil];
