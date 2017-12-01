@@ -58,17 +58,41 @@
 		3092DC0E1FD06A04009368EF /* JRPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				3422E9AB1FD0F46700A6BB4A /* JRPhotoBrowserDelegate */,
+				3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */,
+				3422E9A91FD0F44900A6BB4A /* SupportFile */,
+				3092DC1D1FD06A04009368EF /* Info.plist */,
+			);
+			path = JRPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		3422E9A91FD0F44900A6BB4A /* SupportFile */ = {
+			isa = PBXGroup;
+			children = (
+				3092DC151FD06A04009368EF /* Main.storyboard */,
+				3092DC181FD06A04009368EF /* Assets.xcassets */,
+				3092DC1A1FD06A04009368EF /* LaunchScreen.storyboard */,
+				3092DC1E1FD06A04009368EF /* main.m */,
+			);
+			path = SupportFile;
+			sourceTree = "<group>";
+		};
+		3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = JRPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		3422E9AB1FD0F46700A6BB4A /* JRPhotoBrowserDelegate */ = {
+			isa = PBXGroup;
+			children = (
 				3092DC0F1FD06A04009368EF /* AppDelegate.h */,
 				3092DC101FD06A04009368EF /* AppDelegate.m */,
 				3092DC121FD06A04009368EF /* ViewController.h */,
 				3092DC131FD06A04009368EF /* ViewController.m */,
-				3092DC151FD06A04009368EF /* Main.storyboard */,
-				3092DC181FD06A04009368EF /* Assets.xcassets */,
-				3092DC1A1FD06A04009368EF /* LaunchScreen.storyboard */,
-				3092DC1D1FD06A04009368EF /* Info.plist */,
-				3092DC1E1FD06A04009368EF /* main.m */,
 			);
-			path = JRPhotoBrowser;
+			path = JRPhotoBrowserDelegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = JRPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jerrywx.JRPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -295,6 +320,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = JRPhotoBrowser/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jerrywx.JRPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
