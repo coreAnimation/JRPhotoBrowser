@@ -13,6 +13,7 @@
 		3092DC191FD06A04009368EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3092DC181FD06A04009368EF /* Assets.xcassets */; };
 		3092DC1C1FD06A04009368EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3092DC1A1FD06A04009368EF /* LaunchScreen.storyboard */; };
 		3092DC1F1FD06A04009368EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3092DC1E1FD06A04009368EF /* main.m */; };
+		3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		3092DC1B1FD06A04009368EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3092DC1D1FD06A04009368EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3092DC1E1FD06A04009368EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrowser.h; sourceTree = "<group>"; };
+		3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRPhotoBrowser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,8 @@
 		3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */,
+				3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */,
 			);
 			path = JRPhotoBrowser;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3092DC141FD06A04009368EF /* ViewController.m in Sources */,
+				3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */,
 				3092DC1F1FD06A04009368EF /* main.m in Sources */,
 				3092DC111FD06A04009368EF /* AppDelegate.m in Sources */,
 			);

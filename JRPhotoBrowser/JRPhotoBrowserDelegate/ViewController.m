@@ -7,8 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "JRPhotoBrowser.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) UIView *imgView;
+
+@property (nonatomic, strong) UIView *vvv2;
 
 @end
 
@@ -18,7 +23,23 @@
 	[super viewDidLoad];
 	
 	self.view.backgroundColor = [UIColor whiteColor];
+	
+	self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
+	self.imgView.userInteractionEnabled = YES;
+	self.imgView.backgroundColor = [UIColor orangeColor];
+	[self.view addSubview:self.imgView];
+	
+	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openVC)];
+	[self.imgView addGestureRecognizer:tap];
+	
+	
+	
 }
 
+- (void)openVC {
+//	JRPhotoBrowser *vc = [JRPhotoBrowser new];
+	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:self.imgView];
+	[self presentViewController:vc animated:YES completion:nil];
+}
 
 @end
