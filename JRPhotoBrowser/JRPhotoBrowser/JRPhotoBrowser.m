@@ -10,11 +10,15 @@
 
 @interface JRPhotoBrowser ()
 
+/// 动画图片
 @property (nonatomic, strong) UIImageView	*placeImageView;
 
 @property (nonatomic, assign) CGRect	sourceFrame;
 
 @property (nonatomic, strong) UIView	*sourceView;
+
+/// 关闭按钮
+@property (nonatomic, strong) UIButton	*closeBtn;
 
 @end
 
@@ -52,10 +56,17 @@
 }
 
 - (void)setup {
+	/// 初始化
 	self.view.opaque = NO;
 	self.modalPresentationCapturesStatusBarAppearance = true;
 	self.modalPresentationStyle = UIModalPresentationCustom;
 	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+	
+	/// 关闭按钮
+	self.closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 40, 25)];
+	[self.view addSubview:self.closeBtn];
+	[self.closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+	[self.closeBtn addTarget:self action:@selector(closeAct) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)viewDidLoad {
@@ -76,7 +87,7 @@
 	
 	CGRect frame = CGRectMake(0, y, w, h);
 	
-	[UIView animateWithDuration:3.3 animations:^{
+	[UIView animateWithDuration:.3 animations:^{
 		self.placeImageView.frame = frame;
 	}];
 }
@@ -90,7 +101,7 @@
 }
 
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)closeAct {
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
