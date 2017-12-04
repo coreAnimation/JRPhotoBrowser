@@ -12,4 +12,8 @@
 
 + (instancetype)photoBrowserWithView:(UIView *)view;
 
++ (instancetype)photoBrowserWithView:(UIView *)view
+						   imageList:(NSArray *)imgList
+							   index:(NSInteger)index;
+
 @end

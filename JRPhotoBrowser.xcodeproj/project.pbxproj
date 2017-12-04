@@ -13,6 +13,9 @@
 		3092DC191FD06A04009368EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3092DC181FD06A04009368EF /* Assets.xcassets */; };
 		3092DC1C1FD06A04009368EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3092DC1A1FD06A04009368EF /* LaunchScreen.storyboard */; };
 		3092DC1F1FD06A04009368EF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3092DC1E1FD06A04009368EF /* main.m */; };
+		30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC5861FD5902400ABC7F9 /* JRImageViewItem.m */; };
+		30AFC58A1FD5913A00ABC7F9 /* JRImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */; };
+		30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */; };
 		3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +30,13 @@
 		3092DC1B1FD06A04009368EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3092DC1D1FD06A04009368EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3092DC1E1FD06A04009368EF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		30AFC5841FD58E4200ABC7F9 /* JRPhotoBrowerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrowerHeader.h; sourceTree = "<group>"; };
+		30AFC5851FD5902400ABC7F9 /* JRImageViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageViewItem.h; sourceTree = "<group>"; };
+		30AFC5861FD5902400ABC7F9 /* JRImageViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageViewItem.m; sourceTree = "<group>"; };
+		30AFC5881FD5913A00ABC7F9 /* JRImageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRImageModel.h; sourceTree = "<group>"; };
+		30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageModel.m; sourceTree = "<group>"; };
+		30AFC58C1FD59F5900ABC7F9 /* JRZoomingScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRZoomingScrollView.h; sourceTree = "<group>"; };
+		30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRZoomingScrollView.m; sourceTree = "<group>"; };
 		3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrowser.h; sourceTree = "<group>"; };
 		3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRPhotoBrowser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,8 +93,15 @@
 		3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				30AFC5841FD58E4200ABC7F9 /* JRPhotoBrowerHeader.h */,
 				3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */,
 				3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */,
+				30AFC5851FD5902400ABC7F9 /* JRImageViewItem.h */,
+				30AFC5861FD5902400ABC7F9 /* JRImageViewItem.m */,
+				30AFC5881FD5913A00ABC7F9 /* JRImageModel.h */,
+				30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */,
+				30AFC58C1FD59F5900ABC7F9 /* JRZoomingScrollView.h */,
+				30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */,
 			);
 			path = JRPhotoBrowser;
 			sourceTree = "<group>";
@@ -174,7 +191,10 @@
 				3092DC141FD06A04009368EF /* ViewController.m in Sources */,
 				3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */,
 				3092DC1F1FD06A04009368EF /* main.m in Sources */,
+				30AFC58A1FD5913A00ABC7F9 /* JRImageModel.m in Sources */,
+				30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */,
 				3092DC111FD06A04009368EF /* AppDelegate.m in Sources */,
+				30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

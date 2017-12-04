@@ -74,7 +74,7 @@
 		imgView.contentMode = UIViewContentModeScaleAspectFill;
 		imgView.clipsToBounds = YES;
 		
-		imgView.backgroundColor = [UIColor orangeColor];
+		imgView.tag = i;
 		[self.scrollView addSubview:imgView];
 		imgView.image = [UIImage imageNamed:self.imgList[i]];
 		
@@ -93,9 +93,18 @@
 	UIImageView *sender = (UIImageView *)gesture.view;
 	
 	
+	/// 1.
+//	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender];
 	
-	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender];
+	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender
+													imageList:self.imgList
+														index:sender.tag];
+	
+	
 	[self presentViewController:vc animated:YES completion:nil];
+	
+	
+	
 }
 
 @end
