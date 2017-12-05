@@ -34,6 +34,7 @@
 - (void)setup {
 	///
 	self.scrollView = [[JRZoomingScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
+	self.scrollView.item = self;
 	[self.contentView addSubview:self.scrollView];
 }
 
@@ -47,6 +48,13 @@
 
 - (void)resetScrollViewZoom {
 	[self.scrollView resetZoom];
+}
+
+/// 关闭图片浏览器
+- (void)closePhotoBrowerController {
+	if ([self.delegate respondsToSelector:@selector(closePhotoBrowerViewController)]) {
+		[self.delegate closePhotoBrowerViewController];
+	}
 }
 
 @end

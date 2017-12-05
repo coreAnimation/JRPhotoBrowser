@@ -8,6 +8,7 @@
 
 #import "JRZoomingScrollView.h"
 #import "JRPhotoBrowerHeader.h"
+#import "JRImageViewItem.h"
 
 @interface JRZoomingScrollView () <UIScrollViewDelegate>
 
@@ -45,8 +46,10 @@
 	[self addGestureRecognizer:tap2];
 }
 
+/// 
 - (void)closeAct {
-	NSLog(@"=======");
+//	JRImageViewItem *item = (JRImageViewItem *)self.superview;
+	[self.item closePhotoBrowerController];
 }
 
 - (void)handleDoubleTap:(UIGestureRecognizer *)gesture {

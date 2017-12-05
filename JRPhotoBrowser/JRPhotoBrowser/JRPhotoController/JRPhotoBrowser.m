@@ -11,7 +11,8 @@
 #import "JRImageModel.h"
 #import "JRImageViewItem.h"
 
-@interface JRPhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface JRPhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate,
+								JRImageViewItemDelegate>
 
 /// 动画图片
 @property (nonatomic, strong) UIImageView	*placeImageView;
@@ -133,6 +134,10 @@
 //	[self addGestureRecognizer:press];
 }
 
+#pragma mark - JRImageViewItemDelegate
+- (void)closePhotoBrowerViewController {
+	[self closeAct];
+}
 
 #pragma mark - UICollectionViewDataSource, UICollectionViewDelegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -144,6 +149,7 @@
 	
 	JRImageViewItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item"
 																		   forIndexPath:indexPath];
+	cell.delegate = self;
 	cell.model = self.imageModels[indexPath.row];
 	return cell;
 }
@@ -248,6 +254,8 @@
 }
 
 - (void)closeAct {
+	
+	self.view.userInteractionEnabled = NO;
 	self.placeImageView.image = [self.imageModels[self.currentIndex] thumbImage];
 	self.placeImageView.hidden = NO;
 	[UIView animateWithDuration:0.3 animations:^{
@@ -255,7 +263,6 @@
 	}];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 #pragma mark -
 - (UICollectionViewFlowLayout *)layout {

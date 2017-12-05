@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class JRImageViewItem;
 @interface JRZoomingScrollView : UIScrollView
+
+@property (nonatomic, strong) JRImageViewItem	*item;
 
 /// 设置图片
 @property (nonatomic, strong) UIImage	*image;

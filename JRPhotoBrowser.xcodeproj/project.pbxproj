@@ -136,10 +136,10 @@
 			isa = PBXGroup;
 			children = (
 				30AFC5841FD58E4200ABC7F9 /* JRPhotoBrowerHeader.h */,
-				3422E2A81FD681AD00F4AC2C /* JRPhotoModels */,
-				3422E2A71FD681A200F4AC2C /* JRPhotoViews */,
-				3422E2A61FD6819000F4AC2C /* JRPhotoCell */,
 				3422E2A51FD6817C00F4AC2C /* JRPhotoController */,
+				3422E2A61FD6819000F4AC2C /* JRPhotoCell */,
+				3422E2A71FD681A200F4AC2C /* JRPhotoViews */,
+				3422E2A81FD681AD00F4AC2C /* JRPhotoModels */,
 			);
 			path = JRPhotoBrowser;
 			sourceTree = "<group>";
