@@ -41,8 +41,7 @@
 					 @"image9",
 					 @"image10",
 					 @"image11",
-					 @"image12",
-					 @"image13",];
+					 @"image12",];
 
 	CGFloat width = [UIScreen mainScreen].bounds.size.width;
 	CGFloat height = [UIScreen mainScreen].bounds.size.height;
@@ -55,7 +54,7 @@
 
 - (void)setupView {
 	
-	NSInteger numb = 12;
+	NSInteger numb = self.imgList.count;
 	NSInteger count = 2;
 	CGFloat width = [UIScreen mainScreen].bounds.size.width;
 	CGFloat margin = 20;
@@ -97,6 +96,7 @@
 	/// 1.
 //	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender];
 	
+	/// 2.
 	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender
 													imageList:self.imgList
 														index:sender.tag];

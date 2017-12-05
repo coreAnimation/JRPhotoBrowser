@@ -88,6 +88,8 @@
 	CGFloat h = SCREEN_W * scale;
 	CGFloat y = (SCREEN_H - 64 - 49 - h) * 0.5;
 	self.imgView.frame = CGRectMake(0, y, SCREEN_W, h);
+	
+	self.contentSize = CGSizeMake(SCREEN_W, h);
 }
 
 

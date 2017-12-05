@@ -30,7 +30,7 @@
 	self.delegate = self;
 	self.minimumZoomScale = 1.0;
 	self.maximumZoomScale = 2.0;
-	self.decelerationRate = UIScrollViewDecelerationRateFast;
+//	self.decelerationRate = UIScrollViewDecelerationRateFast;
 	
 	//添加双击事件
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -47,6 +47,11 @@
 	CGRect zoomRect = [self zoomRectForScale:zoomScale
 								  withCenter:[gesture locationInView:gesture.view]];
 	[self zoomToRect:zoomRect animated:YES];
+}
+
+///
+- (void)resetZoom {
+	self.zoomScale = 1.0;
 }
 
 ///
@@ -86,7 +91,10 @@
 	CGFloat scale =  image.size.height / image.size.width;
 	CGFloat h = SCREEN_W * scale;
 	CGFloat y = (SCREEN_H - h) * 0.5;
+	
+	if (y < 0) { y = 0; }
 	self.imgView.frame = CGRectMake(0, y, SCREEN_W, h);
+	self.contentSize = CGSizeMake(SCREEN_W, h);
 }
 
 @end

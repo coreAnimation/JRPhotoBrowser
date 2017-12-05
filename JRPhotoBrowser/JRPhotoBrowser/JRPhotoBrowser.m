@@ -94,7 +94,6 @@
 	self.collectionView.pagingEnabled = YES;
 	self.collectionView.backgroundColor = [UIColor whiteColor];
 	[self.collectionView registerClass:[JRImageViewItem class] forCellWithReuseIdentifier:@"item"];
-//	[self.view addSubview:self.collectionView];
 	[self.view insertSubview:self.collectionView belowSubview:self.closeBtn];
 	
 	/// Page
@@ -109,6 +108,8 @@
 	});
 	
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex, self.imageList.count];
+	
+	self.collectionView.alpha = 0;
 }
 
 
@@ -123,13 +124,6 @@
 	JRImageViewItem *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"item"
 																		   forIndexPath:indexPath];
 	cell.model = self.imageModels[indexPath.row];
-
-	if (indexPath.row % 2 == 0) {
-		cell.backgroundColor = [UIColor yellowColor];
-	} else {
-		cell.backgroundColor = [UIColor redColor];
-	}
-	
 	return cell;
 }
 
@@ -141,6 +135,18 @@
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", index, self.imageList.count];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView
+	   willDisplayCell:(UICollectionViewCell *)cell
+	forItemAtIndexPath:(NSIndexPath *)indexPath {
+	
+}
+
+- (void)collectionView:(UICollectionView *)collectionView
+  				didEndDisplayingCell:(UICollectionViewCell *)cell
+				forItemAtIndexPath:(NSIndexPath *)indexPath {
+	JRImageViewItem *item = (JRImageViewItem *)cell;
+	[item resetScrollViewZoom];
+}
 
 
 /// 初始化 开启动画
@@ -188,10 +194,14 @@
 	CGFloat h = w / scal;
 	CGFloat y = ([UIScreen mainScreen].bounds.size.height - h) * 0.5;
 	
+	
+	if (y < 0) { y = 0; }
 	CGRect frame = CGRectMake(0, y, w, h);
 	
 	[UIView animateWithDuration:.3 animations:^{
 		self.placeImageView.frame = frame;
+	}completion:^(BOOL finished) {
+		self.collectionView.alpha = 1;
 	}];
 }
 
@@ -218,6 +228,14 @@
 }
 
 - (void)closeAct {
+	
+	self.placeImageView.image = [self.imageModels[self.currentIndex] thumbImage];
+	
+	self.placeImageView.hidden = NO;
+	
+	[UIView animateWithDuration:0.3 animations:^{
+		self.placeImageView.frame = self.sourceFrame;
+	}];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -235,6 +253,5 @@
 	
 	return _layout;
 }
-
 
 @end

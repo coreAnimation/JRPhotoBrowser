@@ -14,5 +14,6 @@
 /// 模型
 @property (nonatomic, strong) JRImageModel	*model;
 
+- (void)resetScrollViewZoom;
 
 @end
