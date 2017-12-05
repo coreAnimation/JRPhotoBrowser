@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "SecondViewController.h"
+#import "JRTestController.h"
 
 @interface AppDelegate ()
 
@@ -21,17 +22,23 @@
 	
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	
+	///
 	ViewController *viewVC = [ViewController new];
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewVC];
 	viewVC.title = @"Home";
 	
-	
+	///
 	SecondViewController *viewVC2 = [SecondViewController new];
 	UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:viewVC2];
 	viewVC2.title = @"Test";
 	
+	/// JRTestController
+	JRTestController *viewVC3 = [JRTestController new];
+	UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:viewVC3];
+	viewVC3.title = @"Demo";
+	
 	UITabBarController *tabController = [UITabBarController new];
-	tabController.viewControllers = @[navController, navController2];
+	tabController.viewControllers = @[navController, navController2, navController3];
 	
 	self.window.rootViewController = tabController;
 	

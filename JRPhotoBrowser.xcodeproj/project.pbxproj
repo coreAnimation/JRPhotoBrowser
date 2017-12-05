@@ -18,6 +18,8 @@
 		30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */; };
 		3422E2A11FD64D6A00F4AC2C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E2A01FD64D6A00F4AC2C /* SecondViewController.m */; };
 		3422E2A41FD66FF200F4AC2C /* JRDemoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E2A31FD66FF200F4AC2C /* JRDemoScrollView.m */; };
+		3422E2AD1FD68B3C00F4AC2C /* JRTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E2AC1FD68B3C00F4AC2C /* JRTestController.m */; };
+		3422E2B01FD68BB600F4AC2C /* JRButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E2AF1FD68BB600F4AC2C /* JRButton.m */; };
 		3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,10 @@
 		3422E2A01FD64D6A00F4AC2C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3422E2A21FD66FF200F4AC2C /* JRDemoScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRDemoScrollView.h; sourceTree = "<group>"; };
 		3422E2A31FD66FF200F4AC2C /* JRDemoScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRDemoScrollView.m; sourceTree = "<group>"; };
+		3422E2AB1FD68B3C00F4AC2C /* JRTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRTestController.h; sourceTree = "<group>"; };
+		3422E2AC1FD68B3C00F4AC2C /* JRTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRTestController.m; sourceTree = "<group>"; };
+		3422E2AE1FD68BB600F4AC2C /* JRButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRButton.h; sourceTree = "<group>"; };
+		3422E2AF1FD68BB600F4AC2C /* JRButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRButton.m; sourceTree = "<group>"; };
 		3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrowser.h; sourceTree = "<group>"; };
 		3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRPhotoBrowser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,6 +83,8 @@
 		3092DC0E1FD06A04009368EF /* JRPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				3422E2AA1FD68B1900F4AC2C /* JRPhotoDemo */,
+				3422E2A91FD68B1200F4AC2C /* New Group */,
 				3422E9AB1FD0F46700A6BB4A /* JRPhotoBrowserDelegate */,
 				3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */,
 				3422E9A91FD0F44900A6BB4A /* SupportFile */,
@@ -119,6 +127,24 @@
 				30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */,
 			);
 			path = JRPhotoModels;
+			sourceTree = "<group>";
+		};
+		3422E2A91FD68B1200F4AC2C /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		3422E2AA1FD68B1900F4AC2C /* JRPhotoDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3422E2AB1FD68B3C00F4AC2C /* JRTestController.h */,
+				3422E2AC1FD68B3C00F4AC2C /* JRTestController.m */,
+				3422E2AE1FD68BB600F4AC2C /* JRButton.h */,
+				3422E2AF1FD68BB600F4AC2C /* JRButton.m */,
+			);
+			path = JRPhotoDemo;
 			sourceTree = "<group>";
 		};
 		3422E9A91FD0F44900A6BB4A /* SupportFile */ = {
@@ -237,8 +263,10 @@
 				30AFC58A1FD5913A00ABC7F9 /* JRImageModel.m in Sources */,
 				3422E2A11FD64D6A00F4AC2C /* SecondViewController.m in Sources */,
 				30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */,
+				3422E2AD1FD68B3C00F4AC2C /* JRTestController.m in Sources */,
 				3092DC111FD06A04009368EF /* AppDelegate.m in Sources */,
 				30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */,
+				3422E2B01FD68BB600F4AC2C /* JRButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
