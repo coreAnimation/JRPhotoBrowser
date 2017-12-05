@@ -108,8 +108,29 @@
 	});
 	
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex, self.imageList.count];
-	
 	self.collectionView.alpha = 0;
+	
+//	// 3. 手势
+//	// 3.1 单击手势
+//	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//																		  action:@selector(closeAct)];
+////	tap.delegate = self;
+//	[self.view addGestureRecognizer:tap];
+//	// 3.2 双击手势
+//	UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self
+//																		   action:@selector(doubleTap:)];
+//	tap2.delegate = self;
+//	tap2.numberOfTapsRequired = 2;
+//	// 指定双击失败触发单击
+//	[tap requireGestureRecognizerToFail: tap2];
+//	[self addGestureRecognizer:tap2];
+//	// 3.2 长按手势
+//	UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+//																						action:@selector(longPress:)];
+//	press.minimumPressDuration = 0.8; //定义按的时间
+//	press.numberOfTouchesRequired = 1;
+//	press.delegate = self;
+//	[self addGestureRecognizer:press];
 }
 
 
@@ -147,7 +168,6 @@
 	JRImageViewItem *item = (JRImageViewItem *)cell;
 	[item resetScrollViewZoom];
 }
-
 
 /// 初始化 开启动画
 - (void)setFromView:(UIView *)fromView {
@@ -228,16 +248,14 @@
 }
 
 - (void)closeAct {
-	
 	self.placeImageView.image = [self.imageModels[self.currentIndex] thumbImage];
-	
 	self.placeImageView.hidden = NO;
-	
 	[UIView animateWithDuration:0.3 animations:^{
 		self.placeImageView.frame = self.sourceFrame;
 	}];
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 #pragma mark -
 - (UICollectionViewFlowLayout *)layout {

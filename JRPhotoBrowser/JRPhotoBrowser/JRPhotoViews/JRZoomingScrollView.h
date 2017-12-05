@@ -10,8 +10,10 @@
 
 @interface JRZoomingScrollView : UIScrollView
 
+/// 设置图片
 @property (nonatomic, strong) UIImage	*image;
 
+/// 缩放
 - (void)resetZoom;
 
 @end

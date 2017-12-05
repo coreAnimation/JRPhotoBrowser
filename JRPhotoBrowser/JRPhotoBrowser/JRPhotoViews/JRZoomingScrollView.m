@@ -30,14 +30,23 @@
 	self.delegate = self;
 	self.minimumZoomScale = 1.0;
 	self.maximumZoomScale = 2.0;
-//	self.decelerationRate = UIScrollViewDecelerationRateFast;
 	
-	//添加双击事件
+	/// 添加双击事件
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
 																		  action:@selector(handleDoubleTap:)];
 	[tap setNumberOfTapsRequired:2];
 	[self.imgView addGestureRecognizer:tap];
 	self.imgView.userInteractionEnabled = YES;
+	
+	// 单击手势
+	UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self
+																		  action:@selector(closeAct)];
+	[tap2 requireGestureRecognizerToFail:tap];
+	[self addGestureRecognizer:tap2];
+}
+
+- (void)closeAct {
+	NSLog(@"=======");
 }
 
 - (void)handleDoubleTap:(UIGestureRecognizer *)gesture {
