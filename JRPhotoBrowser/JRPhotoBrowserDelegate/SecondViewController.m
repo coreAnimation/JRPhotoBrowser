@@ -8,8 +8,11 @@
 
 #import "SecondViewController.h"
 #import "JRPhotoBrowerHeader.h"
+#import "JRDemoScrollView.h"
 
 @interface SecondViewController () <UIScrollViewDelegate>
+
+@property (nonatomic, strong) JRDemoScrollView	*myScrollView;
 
 @property (nonatomic, strong) UIScrollView	*scrollView;
 
@@ -23,12 +26,29 @@
     [super viewDidLoad];
 	self.view.backgroundColor = [UIColor whiteColor];
 	
-	[self setup];
+	self.automaticallyAdjustsScrollViewInsets = NO;
+//	[self setup];
+	[self setup2];
 }
 
-- (void)setup {
+- (void)setup2 {
 	
-	self.automaticallyAdjustsScrollViewInsets = NO;
+	CGRect frame = CGRectMake(0, 64, SCREEN_W, SCREEN_H - 64 - 49);
+	self.myScrollView = [[JRDemoScrollView alloc] initWithFrame:frame];
+	self.myScrollView.contentSize = CGSizeMake(SCREEN_W, SCREEN_H - 64 - 49);
+	self.myScrollView.minimumZoomScale = 1.0;
+	self.myScrollView.maximumZoomScale = 4.0;
+	self.myScrollView.backgroundColor = [UIColor orangeColor];
+	[self.view addSubview:self.myScrollView];
+	
+	UIImage *image = [UIImage imageNamed:@"image10"];
+	self.myScrollView.image = image;
+	
+}
+
+
+
+- (void)setup {
 	
 	CGFloat margin = 20;
 	CGFloat w = SCREEN_W - margin * 2;
@@ -77,13 +97,11 @@
 	return zoomRect;
 }
 
-
-
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
 	return self.imgView;
 }
 
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); {
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
 	CGFloat offsetX=0.0;
 	CGFloat offsetY=0.0;
 	if (scrollView.bounds.size.width> scrollView.contentSize.width){
