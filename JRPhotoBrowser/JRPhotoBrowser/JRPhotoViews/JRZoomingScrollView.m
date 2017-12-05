@@ -33,9 +33,6 @@
 	self.maximumZoomScale = 2.0;
 
 	self.panGestureRecognizer.delegate = self;
-	
-	NSLog(@"BBBBBB: %@", self.panGestureRecognizer);
-	
 	/// 添加双击事件
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
 																		  action:@selector(handleDoubleTap:)];
@@ -71,7 +68,6 @@
 
 /// 
 - (void)closeAct {
-//	JRImageViewItem *item = (JRImageViewItem *)self.superview;
 	[self.item closePhotoBrowerController];
 }
 

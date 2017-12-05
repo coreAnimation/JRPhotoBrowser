@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3045F3521FD6EA27000BB1DA /* UIView+JRExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3045F3501FD6EA27000BB1DA /* UIView+JRExtension.m */; };
+		3045F3551FD6F237000BB1DA /* JRCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3045F3541FD6F237000BB1DA /* JRCollectionView.m */; };
 		3092DC111FD06A04009368EF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3092DC101FD06A04009368EF /* AppDelegate.m */; };
 		3092DC141FD06A04009368EF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3092DC131FD06A04009368EF /* ViewController.m */; };
 		3092DC171FD06A04009368EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3092DC151FD06A04009368EF /* Main.storyboard */; };
@@ -24,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3045F3501FD6EA27000BB1DA /* UIView+JRExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+JRExtension.m"; sourceTree = "<group>"; };
+		3045F3511FD6EA27000BB1DA /* UIView+JRExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+JRExtension.h"; sourceTree = "<group>"; };
+		3045F3531FD6F237000BB1DA /* JRCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRCollectionView.h; sourceTree = "<group>"; };
+		3045F3541FD6F237000BB1DA /* JRCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRCollectionView.m; sourceTree = "<group>"; };
 		3092DC0C1FD06A04009368EF /* JRPhotoBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JRPhotoBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3092DC0F1FD06A04009368EF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3092DC101FD06A04009368EF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -116,6 +122,8 @@
 			children = (
 				30AFC58C1FD59F5900ABC7F9 /* JRZoomingScrollView.h */,
 				30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */,
+				3045F3531FD6F237000BB1DA /* JRCollectionView.h */,
+				3045F3541FD6F237000BB1DA /* JRCollectionView.m */,
 			);
 			path = JRPhotoViews;
 			sourceTree = "<group>";
@@ -161,6 +169,8 @@
 		3422E9AA1FD0F45C00A6BB4A /* JRPhotoBrowser */ = {
 			isa = PBXGroup;
 			children = (
+				3045F3511FD6EA27000BB1DA /* UIView+JRExtension.h */,
+				3045F3501FD6EA27000BB1DA /* UIView+JRExtension.m */,
 				30AFC5841FD58E4200ABC7F9 /* JRPhotoBrowerHeader.h */,
 				3422E2A51FD6817C00F4AC2C /* JRPhotoController */,
 				3422E2A61FD6819000F4AC2C /* JRPhotoCell */,
@@ -264,6 +274,8 @@
 				3422E2A11FD64D6A00F4AC2C /* SecondViewController.m in Sources */,
 				30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */,
 				3422E2AD1FD68B3C00F4AC2C /* JRTestController.m in Sources */,
+				3045F3521FD6EA27000BB1DA /* UIView+JRExtension.m in Sources */,
+				3045F3551FD6F237000BB1DA /* JRCollectionView.m in Sources */,
 				3092DC111FD06A04009368EF /* AppDelegate.m in Sources */,
 				30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */,
 				3422E2B01FD68BB600F4AC2C /* JRButton.m in Sources */,

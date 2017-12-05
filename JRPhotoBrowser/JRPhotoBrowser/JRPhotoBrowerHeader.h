@@ -9,6 +9,8 @@
 #ifndef JRPhotoBrowerHeader_h
 #define JRPhotoBrowerHeader_h
 
+#import "JRCollectionView.h"
+#import "UIView+JRExtension.h"
 #define SCREEN_W ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_H ([UIScreen mainScreen].bounds.size.height)
 

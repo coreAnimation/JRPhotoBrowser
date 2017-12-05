@@ -27,11 +27,13 @@
 @property (nonatomic, assign) NSInteger	currentIndex;
 
 ///
-@property (nonatomic, strong) UICollectionView	*collectionView;
+@property (nonatomic, strong) JRCollectionView	*collectionView;
 
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
 
 @property (nonatomic, strong) UILabel		*pageNumber;
+
+@property (nonatomic, assign) CGFloat		offSetY;
 
 @end
 
@@ -59,14 +61,10 @@
 + (instancetype)photoBrowserWithView:(UIView *)view
 						   imageList:(NSArray *)imgList
 							   index:(NSInteger)index {
-	
 	JRPhotoBrowser *pb = [JRPhotoBrowser photoBrowserWithView:view];
-	
 	pb.currentIndex = index;
 	pb.imageList = imgList;
-	
 	[pb setupContenter];
-	
 	return pb;
 }
 
@@ -88,12 +86,12 @@
 - (void)setupContenter {
 	
 	/// collectionView
-	self.collectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds
+	self.collectionView = [[JRCollectionView alloc] initWithFrame:self.view.bounds
 											 collectionViewLayout:self.layout];
 	self.collectionView.delegate = self;
 	self.collectionView.dataSource = self;
 	self.collectionView.pagingEnabled = YES;
-	self.collectionView.backgroundColor = [UIColor whiteColor];
+	self.collectionView.backgroundColor = [UIColor clearColor];
 	[self.collectionView registerClass:[JRImageViewItem class] forCellWithReuseIdentifier:@"item"];
 	[self.view insertSubview:self.collectionView belowSubview:self.closeBtn];
 	
@@ -115,18 +113,65 @@
 	// 拖动
 	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
 																		  action:@selector(panAction:)];
-//	pan.delegate = self;
 	[self.view addGestureRecognizer:pan];
-	NSLog(@"AAAAAA: %@", pan);
 }
 
+/// 拖拽方法
 - (void)panAction:(UIPanGestureRecognizer *)gesture {
 	
-	CGPoint point = [gesture locationInView:self.collectionView];
-//	NSLog(@"============== %f", point.y);
+	CGPoint point = [gesture locationInView:self.view];
+	CGFloat offSetY = point.y;
+	switch (gesture.state) {
+		case UIGestureRecognizerStateBegan:
+			self.offSetY = offSetY;
+			break;
+			
+		case UIGestureRecognizerStateChanged: {
+			CGFloat add = offSetY - self.offSetY;
+			self.collectionView.y = self.collectionView.y + add;
+			self.offSetY = offSetY;
+		}
+			break;
+			
+		case UIGestureRecognizerStateFailed:
+		case UIGestureRecognizerStateEnded:
+		case UIGestureRecognizerStateCancelled: {
+			CGFloat centerY = self.collectionView.centerY;
+			[self operationWithCenterY:centerY];
+		}
+			break;
+		default:
+			break;
+	}
+}
+
+- (void)operationWithCenterY:(CGFloat)centerY {
+	CGFloat half = SCREEN_H * 0.333;
+	if (half < centerY && centerY < half * 2) {
+		[UIView animateWithDuration:0.2 animations:^{
+			self.collectionView.y = 0;
+		}];
+	} else {
+		if (self.collectionView.y > 0) {
+			[UIView animateWithDuration:0.3 animations:^{
+				self.collectionView.y = SCREEN_H;
+			} completion:^(BOOL finished) {
+				[self dismissViewControllerAnimated:NO completion:nil];
+			}];
+		} else {
+			[UIView animateWithDuration:0.3 animations:^{
+				self.collectionView.y = -SCREEN_H;
+			} completion:^(BOOL finished) {
+				[self dismissViewControllerAnimated:NO completion:nil];
+			}];
+		}
+		
+	}
 }
 
 
+#pragma mark - Controller Method
+/// 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
 	return YES;
 }
@@ -137,7 +182,8 @@
 }
 
 #pragma mark - UICollectionViewDataSource, UICollectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)collectionView:(UICollectionView *)collectionView
+	 numberOfItemsInSection:(NSInteger)section {
 	return self.imageModels.count;
 }
 
@@ -203,7 +249,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	self.view.backgroundColor = [UIColor whiteColor];
+	self.view.backgroundColor = [UIColor blackColor];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
