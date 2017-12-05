@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "SecondViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,8 +25,13 @@
 	UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewVC];
 	viewVC.title = @"Home";
 	
+	
+	SecondViewController *viewVC2 = [SecondViewController new];
+	UINavigationController *navController2 = [[UINavigationController alloc] initWithRootViewController:viewVC2];
+	viewVC2.title = @"Test";
+	
 	UITabBarController *tabController = [UITabBarController new];
-	tabController.viewControllers = @[navController];
+	tabController.viewControllers = @[navController, navController2];
 	
 	self.window.rootViewController = tabController;
 	

@@ -26,6 +26,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	self.automaticallyAdjustsScrollViewInsets = NO;
 	self.view.backgroundColor = [UIColor whiteColor];
 	
 	self.imgList = @[@"image0",

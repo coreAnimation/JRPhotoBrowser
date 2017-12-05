@@ -16,6 +16,7 @@
 		30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC5861FD5902400ABC7F9 /* JRImageViewItem.m */; };
 		30AFC58A1FD5913A00ABC7F9 /* JRImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */; };
 		30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */; };
+		3422E2A11FD64D6A00F4AC2C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E2A01FD64D6A00F4AC2C /* SecondViewController.m */; };
 		3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		30AFC5891FD5913A00ABC7F9 /* JRImageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRImageModel.m; sourceTree = "<group>"; };
 		30AFC58C1FD59F5900ABC7F9 /* JRZoomingScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRZoomingScrollView.h; sourceTree = "<group>"; };
 		30AFC58D1FD59F5900ABC7F9 /* JRZoomingScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRZoomingScrollView.m; sourceTree = "<group>"; };
+		3422E29F1FD64D6A00F4AC2C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		3422E2A01FD64D6A00F4AC2C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		3422E9AF1FD104E700A6BB4A /* JRPhotoBrowser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JRPhotoBrowser.h; sourceTree = "<group>"; };
 		3422E9B01FD104E700A6BB4A /* JRPhotoBrowser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JRPhotoBrowser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +116,8 @@
 				3092DC101FD06A04009368EF /* AppDelegate.m */,
 				3092DC121FD06A04009368EF /* ViewController.h */,
 				3092DC131FD06A04009368EF /* ViewController.m */,
+				3422E29F1FD64D6A00F4AC2C /* SecondViewController.h */,
+				3422E2A01FD64D6A00F4AC2C /* SecondViewController.m */,
 			);
 			path = JRPhotoBrowserDelegate;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 				3422E9B11FD104E700A6BB4A /* JRPhotoBrowser.m in Sources */,
 				3092DC1F1FD06A04009368EF /* main.m in Sources */,
 				30AFC58A1FD5913A00ABC7F9 /* JRImageModel.m in Sources */,
+				3422E2A11FD64D6A00F4AC2C /* SecondViewController.m in Sources */,
 				30AFC58E1FD59F5900ABC7F9 /* JRZoomingScrollView.m in Sources */,
 				3092DC111FD06A04009368EF /* AppDelegate.m in Sources */,
 				30AFC5871FD5902400ABC7F9 /* JRImageViewItem.m in Sources */,
@@ -331,7 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = JRPhotoBrowser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jerrywx.JRPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -346,7 +352,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B5SJ8JYP65;
 				INFOPLIST_FILE = JRPhotoBrowser/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jerrywx.JRPhotoBrowser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
