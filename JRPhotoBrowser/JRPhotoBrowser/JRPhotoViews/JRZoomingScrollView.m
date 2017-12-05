@@ -10,7 +10,7 @@
 #import "JRPhotoBrowerHeader.h"
 #import "JRImageViewItem.h"
 
-@interface JRZoomingScrollView () <UIScrollViewDelegate>
+@interface JRZoomingScrollView () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UIImageView	*imgView;
 
@@ -31,6 +31,10 @@
 	self.delegate = self;
 	self.minimumZoomScale = 1.0;
 	self.maximumZoomScale = 2.0;
+
+	self.panGestureRecognizer.delegate = self;
+	
+	NSLog(@"BBBBBB: %@", self.panGestureRecognizer);
 	
 	/// 添加双击事件
 	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
@@ -44,6 +48,25 @@
 																		  action:@selector(closeAct)];
 	[tap2 requireGestureRecognizerToFail:tap];
 	[self addGestureRecognizer:tap2];
+}
+
+/// 手势冲突
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	return YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	
+	CGFloat y = scrollView.contentOffset.y;
+	CGFloat h = scrollView.contentSize.height;
+	
+	if (y <= 0) {
+		NSLog(@"----- TOP");
+	}
+	if (h <= y + scrollView.frame.size.height) {
+		NSLog(@"===== BOTTOM");
+	}
 }
 
 /// 

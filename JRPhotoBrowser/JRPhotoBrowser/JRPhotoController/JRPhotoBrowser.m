@@ -12,7 +12,7 @@
 #import "JRImageViewItem.h"
 
 @interface JRPhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate,
-								JRImageViewItemDelegate>
+								JRImageViewItemDelegate, UIGestureRecognizerDelegate>
 
 /// 动画图片
 @property (nonatomic, strong) UIImageView	*placeImageView;
@@ -108,30 +108,27 @@
 		label;
 	});
 	
-	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex, self.imageList.count];
+	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex,
+											self.imageList.count];
 	self.collectionView.alpha = 0;
 	
-//	// 3. 手势
-//	// 3.1 单击手势
-//	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-//																		  action:@selector(closeAct)];
-////	tap.delegate = self;
-//	[self.view addGestureRecognizer:tap];
-//	// 3.2 双击手势
-//	UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self
-//																		   action:@selector(doubleTap:)];
-//	tap2.delegate = self;
-//	tap2.numberOfTapsRequired = 2;
-//	// 指定双击失败触发单击
-//	[tap requireGestureRecognizerToFail: tap2];
-//	[self addGestureRecognizer:tap2];
-//	// 3.2 长按手势
-//	UILongPressGestureRecognizer *press = [[UILongPressGestureRecognizer alloc] initWithTarget:self
-//																						action:@selector(longPress:)];
-//	press.minimumPressDuration = 0.8; //定义按的时间
-//	press.numberOfTouchesRequired = 1;
-//	press.delegate = self;
-//	[self addGestureRecognizer:press];
+	// 拖动
+	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
+																		  action:@selector(panAction:)];
+//	pan.delegate = self;
+	[self.view addGestureRecognizer:pan];
+	NSLog(@"AAAAAA: %@", pan);
+}
+
+- (void)panAction:(UIPanGestureRecognizer *)gesture {
+	
+	CGPoint point = [gesture locationInView:self.collectionView];
+//	NSLog(@"============== %f", point.y);
+}
+
+
+- (BOOL)prefersStatusBarHidden {
+	return YES;
 }
 
 #pragma mark - JRImageViewItemDelegate
