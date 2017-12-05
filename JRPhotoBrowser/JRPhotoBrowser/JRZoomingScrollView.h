@@ -10,4 +10,6 @@
 
 @interface JRZoomingScrollView : UIScrollView
 
+@property (nonatomic, strong) UIImage	*image;
+
 @end

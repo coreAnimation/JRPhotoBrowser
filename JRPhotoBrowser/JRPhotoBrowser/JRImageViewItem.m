@@ -9,11 +9,12 @@
 #import "JRImageViewItem.h"
 #import "JRPhotoBrowerHeader.h"
 #import "JRImageModel.h"
+#import "JRZoomingScrollView.h"
 
 @interface JRImageViewItem () <UIScrollViewDelegate>
 
 ////
-@property (nonatomic, strong) UIScrollView	*scrollView;
+@property (nonatomic, strong) JRZoomingScrollView	*scrollView;
 ///
 @property (nonatomic, strong) UIImageView	*imgView;
 
@@ -33,28 +34,28 @@
 - (void)setup {
 	
 	///
-	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
-	self.scrollView.delegate = self;
-	self.scrollView.showsHorizontalScrollIndicator = NO;
-	self.scrollView.showsVerticalScrollIndicator = NO;
+	self.scrollView = [[JRZoomingScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
+//	self.scrollView.delegate = self;
+//	self.scrollView.showsHorizontalScrollIndicator = NO;
+//	self.scrollView.showsVerticalScrollIndicator = NO;
 	//设置最大放大倍数
-	self.scrollView.minimumZoomScale = 1.0;
-	self.scrollView.maximumZoomScale = 2.0;
+//	self.scrollView.minimumZoomScale = 1.0;
+//	self.scrollView.maximumZoomScale = 2.0;
 	
 	[self.contentView addSubview:self.scrollView];
 	
 	///
-	self.imgView = [UIImageView new];
-	[self.scrollView addSubview:self.imgView];
-	self.imgView.backgroundColor = [UIColor orangeColor];
-	
-	self.imgView.contentMode = UIViewContentModeScaleAspectFit;
-	//添加双击事件
-	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
-																					   action:@selector(handleDoubleTap:)];
-	[tap setNumberOfTapsRequired:2];
-	[self.imgView addGestureRecognizer:tap];
-	self.imgView.userInteractionEnabled = YES;
+//	self.imgView = [UIImageView new];
+//	[self.scrollView addSubview:self.imgView];
+//	self.imgView.backgroundColor = [UIColor orangeColor];
+//
+//	self.imgView.contentMode = UIViewContentModeScaleAspectFit;
+//	//添加双击事件
+//	UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
+//																					   action:@selector(handleDoubleTap:)];
+//	[tap setNumberOfTapsRequired:2];
+//	[self.imgView addGestureRecognizer:tap];
+//	self.imgView.userInteractionEnabled = YES;
 }
 
 - (void)setModel:(JRImageModel *)model {
@@ -62,14 +63,15 @@
 	
 	if (model.thumbImage) {
 		
-		CGFloat scale =  model.thumbImage.size.height / model.thumbImage.size.width;
-		CGFloat h = SCREEN_W * scale;
-		CGFloat y = (SCREEN_H - h) * 0.5;
-		self.imgView.frame = CGRectMake(0, y, SCREEN_W, h);
-//		self.scrollView.frame = CGRectMake(0, y, SCREEN_W, h);
-//		self.imgView.frame = CGRectMake(0, 0, SCREEN_W, h);
-		
-		self.imgView.image = model.thumbImage;
+//		CGFloat scale =  model.thumbImage.size.height / model.thumbImage.size.width;
+//		CGFloat h = SCREEN_W * scale;
+//		CGFloat y = (SCREEN_H - h) * 0.5;
+//		self.imgView.frame = CGRectMake(0, y, SCREEN_W, h);
+////		self.scrollView.frame = CGRectMake(0, y, SCREEN_W, h);
+////		self.imgView.frame = CGRectMake(0, 0, SCREEN_W, h);
+//
+//		self.imgView.image = model.thumbImage;
+		self.scrollView.image = model.thumbImage;
 		
 		self.scrollView.backgroundColor = [UIColor grayColor];
 	}
