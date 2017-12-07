@@ -56,10 +56,10 @@
 		if (model.urlString.length > 0) {
 			NSURL *url = [NSURL URLWithString:model.urlString];
 			
+			/// 图片下载
 			[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
 				
 			} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-				NSLog(@"-------- %@", [NSThread currentThread]);
 				self.scrollView.image = image;
 			}];
 		}

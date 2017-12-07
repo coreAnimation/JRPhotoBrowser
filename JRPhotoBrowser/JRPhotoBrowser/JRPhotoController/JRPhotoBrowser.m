@@ -70,20 +70,6 @@
 	return pb;
 }
 
-//- (void)setImageList:(NSArray *)imageList {
-//	_imageList = imageList;
-//	
-//	NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:imageList.count];
-//	
-//	for (NSString *name in imageList) {
-//		
-//		JRImageModel *model = [JRImageModel new];
-//		model.imageName = name;
-//		[mArray addObject:model];
-//	}
-//	self.imageModels = mArray;
-//}
-
 ///
 - (void)setupContenter {
 	
@@ -116,6 +102,8 @@
 	// 拖动
 	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
 																		  action:@selector(panAction:)];
+	pan.maximumNumberOfTouches = 1;
+	pan.maximumNumberOfTouches = 1;
 	[self.view addGestureRecognizer:pan];
 }
 
@@ -135,13 +123,21 @@
 			CGFloat add = offSetY - self.offSetY;
 			self.offSetY = offSetY;
 			
-			if ( add > 0 && CGPointEqualToPoint(item.scrollView.contentOffset, CGPointZero)) {
+			if (!item.scrollView.panIsAble) {
 				self.collectionView.y = self.collectionView.y + add;
+			} else {
+				self.collectionView.y = 0;
 			}
 			
-			if (add < 0 && item.scrollView.contentSize.height - 1 <= item.scrollView.frame.size.height + item.scrollView.contentOffset.y) {
-				self.collectionView.y = self.collectionView.y + add;
-			}
+//			if ( add > 0 && CGPointEqualToPoint(item.scrollView.contentOffset, CGPointZero)) {
+//				self.collectionView.y = self.collectionView.y + add;
+//				item.scrollView.scrollEnabled = NO;
+//			}
+//
+//			if (add < 0 && item.scrollView.contentSize.height - 1 <= item.scrollView.frame.size.height + item.scrollView.contentOffset.y) {
+//				self.collectionView.y = self.collectionView.y + add;
+//				item.scrollView.scrollEnabled = NO;
+//			}
 		}
 			break;
 			

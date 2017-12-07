@@ -29,7 +29,7 @@
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_W)];
 	[self addSubview:self.imgView];
 	self.delegate = self;
-	self.bounces = NO;
+//	self.bounces = NO;
 	self.minimumZoomScale = 1.0;
 	self.maximumZoomScale = 2.0;
 
@@ -52,6 +52,21 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
 	return YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	
+	CGFloat y = scrollView.contentOffset.y;
+
+	self.panIsAble = YES;
+	if (y <= 0) {
+		self.panIsAble = NO;
+	}
+	
+//	NSLog(@"----- %f - %f", y + scrollView.frame.size.height, scrollView.contentSize.height);
+	if (y + scrollView.frame.size.height + 1 >= scrollView.contentSize.height) {
+		self.panIsAble = NO;
+	}
 }
 
 /// 
