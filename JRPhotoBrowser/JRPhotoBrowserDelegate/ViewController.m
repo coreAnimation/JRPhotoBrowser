@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "JRPhotoBrowser.h"
+#import "JRImageModel.h"
 
 @interface ViewController ()
 
@@ -96,9 +97,19 @@
 	/// 1.
 //	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender];
 	
+	NSMutableArray *models = [NSMutableArray arrayWithCapacity:self.imgList.count];
+	
+	///
+	for (NSString *name in self.imgList) {
+		JRImageModel *model = [JRImageModel new];
+		model.imageName = name;
+		model.thumbImage = [UIImage imageNamed:model.imageName];
+		[models addObject:model];
+	}
+	
 	/// 2.
 	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender
-													imageList:self.imgList
+													imageList:models
 														index:sender.tag];
 	
 	

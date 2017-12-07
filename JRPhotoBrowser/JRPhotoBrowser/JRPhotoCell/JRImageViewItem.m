@@ -11,6 +11,17 @@
 #import "JRImageModel.h"
 #import "JRZoomingScrollView.h"
 
+
+@interface JRImageProgressView ()
+
+@end
+
+
+@implementation JRImageProgressView
+
+@end
+
+
 @interface JRImageViewItem ()
 
 ///
@@ -41,6 +52,17 @@
 	
 	if (model.thumbImage) {
 		self.scrollView.image = model.thumbImage;
+		
+		if (model.urlString.length > 0) {
+			NSURL *url = [NSURL URLWithString:model.urlString];
+			
+			[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+				
+			} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+				NSLog(@"-------- %@", [NSThread currentThread]);
+				self.scrollView.image = image;
+			}];
+		}
 	}
 }
 
@@ -56,3 +78,6 @@
 }
 
 @end
+
+
+

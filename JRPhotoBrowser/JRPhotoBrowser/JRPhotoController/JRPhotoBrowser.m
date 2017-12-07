@@ -22,7 +22,7 @@
 /// 关闭按钮
 @property (nonatomic, strong) UIButton	*closeBtn;
 
-@property (nonatomic, strong) NSArray	*imageList;
+//@property (nonatomic, strong) NSArray	*imageList;
 @property (nonatomic, strong) NSArray<JRImageModel *> *imageModels;
 
 @property (nonatomic, assign) NSInteger	currentIndex;
@@ -64,24 +64,25 @@
 							   index:(NSInteger)index {
 	JRPhotoBrowser *pb = [JRPhotoBrowser photoBrowserWithView:view];
 	pb.currentIndex = index;
-	pb.imageList = imgList;
+//	pb.imageList = imgList;
+	pb.imageModels = imgList;
 	[pb setupContenter];
 	return pb;
 }
 
-- (void)setImageList:(NSArray *)imageList {
-	_imageList = imageList;
-	
-	NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:imageList.count];
-	
-	for (NSString *name in imageList) {
-		
-		JRImageModel *model = [JRImageModel new];
-		model.imageName = name;
-		[mArray addObject:model];
-	}
-	self.imageModels = mArray;
-}
+//- (void)setImageList:(NSArray *)imageList {
+//	_imageList = imageList;
+//	
+//	NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:imageList.count];
+//	
+//	for (NSString *name in imageList) {
+//		
+//		JRImageModel *model = [JRImageModel new];
+//		model.imageName = name;
+//		[mArray addObject:model];
+//	}
+//	self.imageModels = mArray;
+//}
 
 ///
 - (void)setupContenter {
@@ -107,8 +108,9 @@
 		label;
 	});
 	
-	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", self.currentIndex,
-											self.imageList.count];
+	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd",
+							self.currentIndex, self.imageModels.count];
+	
 	self.collectionView.alpha = 0;
 	
 	// 拖动
@@ -207,12 +209,14 @@
 	return cell;
 }
 
+///
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	CGFloat x = scrollView.contentOffset.x;
 	
 	NSInteger index = (x + SCREEN_W * 0.5) / SCREEN_W;
 	
-	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd", index, self.imageList.count];
+	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd",
+							index, self.imageModels.count];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView

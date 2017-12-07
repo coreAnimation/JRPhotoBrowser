@@ -35,7 +35,7 @@
 	/// JRTestController
 	JRTestController *viewVC3 = [JRTestController new];
 	UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:viewVC3];
-	viewVC3.title = @"Demo";
+	viewVC3.title = @"Web";
 	
 	UITabBarController *tabController = [UITabBarController new];
 	tabController.viewControllers = @[navController, navController2, navController3];

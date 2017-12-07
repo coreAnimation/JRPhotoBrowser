@@ -17,6 +17,13 @@
 
 @end
 
+
+@interface JRImageProgressView : UIView
+
+
+@end
+
+
 @interface JRImageViewItem : UICollectionViewCell
 
 /// 模型

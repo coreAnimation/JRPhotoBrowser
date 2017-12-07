@@ -53,21 +53,6 @@
 	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
 	return YES;
 }
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//	
-//	CGFloat y = scrollView.contentOffset.y;
-//	CGFloat h = scrollView.contentSize.height;
-//	
-//	self.panIsAble = NO;
-////	NSLog(@"--------- %f", y);
-//	
-//	if (y <= 0) {
-//		self.panIsAble = YES;
-//	}
-//	if (h <= y + scrollView.frame.size.height - 1) {
-//		self.panIsAble = YES;
-//	}
-//}
 
 /// 
 - (void)closeAct {

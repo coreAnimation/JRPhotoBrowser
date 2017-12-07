@@ -11,6 +11,7 @@
 
 #import "JRCollectionView.h"
 #import "UIView+JRExtension.h"
+#import <SDWebImageManager.h>
 #define SCREEN_W ([UIScreen mainScreen].bounds.size.width)
 #define SCREEN_H ([UIScreen mainScreen].bounds.size.height)
 
