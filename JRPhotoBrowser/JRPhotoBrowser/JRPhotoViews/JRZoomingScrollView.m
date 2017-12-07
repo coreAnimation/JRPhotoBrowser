@@ -46,37 +46,28 @@
 																		  action:@selector(closeAct)];
 	[tap2 requireGestureRecognizerToFail:tap];
 	[self addGestureRecognizer:tap2];
-	
-//	NSLog(@"--------\\\ %@", self.panGestureRecognizer);
 }
 
 /// 手势冲突
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//	return self.panIsAble;
 	return YES;
 }
-
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//	NSLog(@"-------- %@", touch.view);
-//	return YES;
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//	
+//	CGFloat y = scrollView.contentOffset.y;
+//	CGFloat h = scrollView.contentSize.height;
+//	
+//	self.panIsAble = NO;
+////	NSLog(@"--------- %f", y);
+//	
+//	if (y <= 0) {
+//		self.panIsAble = YES;
+//	}
+//	if (h <= y + scrollView.frame.size.height - 1) {
+//		self.panIsAble = YES;
+//	}
 //}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	
-	CGFloat y = scrollView.contentOffset.y;
-	CGFloat h = scrollView.contentSize.height;
-	
-	self.panIsAble = NO;
-//	NSLog(@"--------- %f", y);
-	
-	if (y <= 0) {
-		self.panIsAble = YES;
-	}
-	if (h <= y + scrollView.frame.size.height - 1) {
-		self.panIsAble = YES;
-	}
-}
 
 /// 
 - (void)closeAct {
