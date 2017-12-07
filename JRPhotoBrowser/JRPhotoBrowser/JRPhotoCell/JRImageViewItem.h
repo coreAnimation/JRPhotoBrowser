@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class JRImageModel;
-
+@class JRZoomingScrollView;
 @protocol JRImageViewItemDelegate <NSObject>
 
 /// 关闭图片浏览器
@@ -24,6 +24,9 @@
 
 /// 代理对象
 @property (nonatomic, weak) id<JRImageViewItemDelegate>	delegate;
+
+////
+@property (nonatomic, strong) JRZoomingScrollView	*scrollView;
 
 /// 重置缩放比例
 - (void)resetScrollViewZoom;

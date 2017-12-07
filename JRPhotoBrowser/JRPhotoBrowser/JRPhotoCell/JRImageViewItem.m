@@ -13,8 +13,6 @@
 
 @interface JRImageViewItem ()
 
-////
-@property (nonatomic, strong) JRZoomingScrollView	*scrollView;
 ///
 @property (nonatomic, strong) UIImageView	*imgView;
 

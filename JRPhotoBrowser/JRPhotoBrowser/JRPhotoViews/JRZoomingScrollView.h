@@ -11,10 +11,13 @@
 @class JRImageViewItem;
 @interface JRZoomingScrollView : UIScrollView
 
-@property (nonatomic, strong) JRImageViewItem	*item;
+@property (nonatomic, weak) JRImageViewItem	*item;
 
 /// 设置图片
 @property (nonatomic, strong) UIImage	*image;
+
+/// 是否允许拖拽
+@property (nonatomic, assign) BOOL	panIsAble;
 
 /// 缩放
 - (void)resetZoom;

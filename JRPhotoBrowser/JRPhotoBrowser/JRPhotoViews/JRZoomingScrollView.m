@@ -29,6 +29,7 @@
 	self.imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_W)];
 	[self addSubview:self.imgView];
 	self.delegate = self;
+	self.bounces = NO;
 	self.minimumZoomScale = 1.0;
 	self.maximumZoomScale = 2.0;
 
@@ -45,24 +46,35 @@
 																		  action:@selector(closeAct)];
 	[tap2 requireGestureRecognizerToFail:tap];
 	[self addGestureRecognizer:tap2];
+	
+//	NSLog(@"--------\\\ %@", self.panGestureRecognizer);
 }
 
 /// 手势冲突
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+//	return self.panIsAble;
 	return YES;
 }
+
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+//	NSLog(@"-------- %@", touch.view);
+//	return YES;
+//}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	
 	CGFloat y = scrollView.contentOffset.y;
 	CGFloat h = scrollView.contentSize.height;
 	
+	self.panIsAble = NO;
+//	NSLog(@"--------- %f", y);
+	
 	if (y <= 0) {
-		NSLog(@"----- TOP");
+		self.panIsAble = YES;
 	}
-	if (h <= y + scrollView.frame.size.height) {
-		NSLog(@"===== BOTTOM");
+	if (h <= y + scrollView.frame.size.height - 1) {
+		self.panIsAble = YES;
 	}
 }
 

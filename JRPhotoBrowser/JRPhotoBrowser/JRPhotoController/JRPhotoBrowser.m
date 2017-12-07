@@ -10,6 +10,7 @@
 #import "JRPhotoBrowerHeader.h"
 #import "JRImageModel.h"
 #import "JRImageViewItem.h"
+#import "JRZoomingScrollView.h"
 
 @interface JRPhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate,
 								JRImageViewItemDelegate, UIGestureRecognizerDelegate>
@@ -119,6 +120,8 @@
 /// 拖拽方法
 - (void)panAction:(UIPanGestureRecognizer *)gesture {
 	
+	JRImageViewItem *item = self.collectionView.visibleCells.firstObject;
+	
 	CGPoint point = [gesture locationInView:self.view];
 	CGFloat offSetY = point.y;
 	switch (gesture.state) {
@@ -128,8 +131,15 @@
 			
 		case UIGestureRecognizerStateChanged: {
 			CGFloat add = offSetY - self.offSetY;
-			self.collectionView.y = self.collectionView.y + add;
 			self.offSetY = offSetY;
+			
+			if ( add > 0 && CGPointEqualToPoint(item.scrollView.contentOffset, CGPointZero)) {
+				self.collectionView.y = self.collectionView.y + add;
+			}
+			
+			if (add < 0 && item.scrollView.contentSize.height - 1 <= item.scrollView.frame.size.height + item.scrollView.contentOffset.y) {
+				self.collectionView.y = self.collectionView.y + add;
+			}
 		}
 			break;
 			
