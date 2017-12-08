@@ -19,6 +19,8 @@
 /// 是否允许拖拽
 @property (nonatomic, assign) BOOL	panIsAble;
 
+@property (nonatomic, strong) UIImageView	*imgView;
+
 /// 缩放
 - (void)resetZoom;
 

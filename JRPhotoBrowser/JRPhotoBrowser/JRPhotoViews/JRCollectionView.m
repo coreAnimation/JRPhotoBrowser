@@ -8,7 +8,16 @@
 
 #import "JRCollectionView.h"
 
+@interface JRCollectionView () <UIGestureRecognizerDelegate>
+
+@end
+
 @implementation JRCollectionView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+	self = [super initWithFrame:frame];
+	return self;
+}
 
 - (void)setFrame:(CGRect)frame {
 	[super setFrame:frame];
@@ -16,7 +25,6 @@
 
 	CGFloat alpha = h / 300.0;
 	self.superview.backgroundColor = [UIColor colorWithWhite:0 alpha:1 - alpha];
-	
 }
 
 @end
