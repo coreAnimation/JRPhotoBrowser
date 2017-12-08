@@ -117,27 +117,19 @@
 	switch (gesture.state) {
 		case UIGestureRecognizerStateBegan:
 			self.offSetY = offSetY;
+			self.collectionView.scrollEnabled = NO;
 			break;
 			
 		case UIGestureRecognizerStateChanged: {
 			CGFloat add = offSetY - self.offSetY;
 			self.offSetY = offSetY;
-			
+
+			/// collectionView 拖拽
 			if (!item.scrollView.panIsAble) {
 				self.collectionView.y = self.collectionView.y + add;
 			} else {
 				self.collectionView.y = 0;
 			}
-			
-//			if ( add > 0 && CGPointEqualToPoint(item.scrollView.contentOffset, CGPointZero)) {
-//				self.collectionView.y = self.collectionView.y + add;
-//				item.scrollView.scrollEnabled = NO;
-//			}
-//
-//			if (add < 0 && item.scrollView.contentSize.height - 1 <= item.scrollView.frame.size.height + item.scrollView.contentOffset.y) {
-//				self.collectionView.y = self.collectionView.y + add;
-//				item.scrollView.scrollEnabled = NO;
-//			}
 		}
 			break;
 			
@@ -145,6 +137,7 @@
 		case UIGestureRecognizerStateEnded:
 		case UIGestureRecognizerStateCancelled: {
 			CGFloat centerY = self.collectionView.centerY;
+			self.collectionView.scrollEnabled = YES;
 			[self operationWithCenterY:centerY];
 		}
 			break;

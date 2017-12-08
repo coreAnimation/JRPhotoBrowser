@@ -12,7 +12,7 @@
 
 @interface JRZoomingScrollView () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
-@property (nonatomic, strong) UIImageView	*imgView;
+//@property (nonatomic, strong) UIImageView	*imgView;
 
 @end
 
