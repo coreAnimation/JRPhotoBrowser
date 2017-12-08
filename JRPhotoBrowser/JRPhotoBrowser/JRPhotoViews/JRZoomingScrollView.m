@@ -51,6 +51,10 @@
 /// 手势冲突
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
 	shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+	
+	if ([otherGestureRecognizer.view isKindOfClass:[JRCollectionView class]]) {
+		return NO;
+	}
 	return YES;
 }
 
@@ -62,8 +66,6 @@
 	if (y <= 0) {
 		self.panIsAble = NO;
 	}
-	
-//	NSLog(@"----- %f - %f", y + scrollView.frame.size.height, scrollView.contentSize.height);
 	if (y + scrollView.frame.size.height + 1 >= scrollView.contentSize.height) {
 		self.panIsAble = NO;
 	}

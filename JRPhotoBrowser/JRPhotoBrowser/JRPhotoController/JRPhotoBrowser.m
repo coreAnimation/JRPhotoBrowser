@@ -177,7 +177,6 @@
 	}
 }
 
-
 #pragma mark - Controller Method
 /// 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
@@ -208,7 +207,7 @@
 ///
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	CGFloat x = scrollView.contentOffset.x;
-	
+//	NSLog(@"----------- AAAA");
 	NSInteger index = (x + SCREEN_W * 0.5) / SCREEN_W;
 	
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd",
