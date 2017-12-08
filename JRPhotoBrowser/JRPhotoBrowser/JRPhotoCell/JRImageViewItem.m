@@ -52,17 +52,19 @@
 	
 	if (model.thumbImage) {
 		self.scrollView.image = model.thumbImage;
+	} else {
+		self.scrollView.image = [UIImage imageNamed:@"error"];
+	}
+	
+	if (model.urlString.length > 0) {
+		NSURL *url = [NSURL URLWithString:model.urlString];
 		
-		if (model.urlString.length > 0) {
-			NSURL *url = [NSURL URLWithString:model.urlString];
+		/// 图片下载
+		[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
 			
-			/// 图片下载
-			[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
-				
-			} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-				self.scrollView.image = image;
-			}];
-		}
+		} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
+			self.scrollView.image = image;
+		}];
 	}
 }
 

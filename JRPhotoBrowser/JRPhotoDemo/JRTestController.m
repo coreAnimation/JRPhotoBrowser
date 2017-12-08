@@ -58,8 +58,12 @@
 		imgView.tag = i;
 		[self.scrollView addSubview:imgView];
 		NSDictionary *dic = self.imgList[i];
-		imgView.image = [UIImage imageNamed:dic[@"name"]];
-		
+		UIImage *image = [UIImage imageNamed:dic[@"name"]];
+		if (image) {
+			imgView.image = image;
+		} else {
+			imgView.image = [UIImage imageNamed:@"error"];
+		}
 		imgView.userInteractionEnabled = YES;
 		UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self
 																			  action:@selector(openVC:)];
@@ -88,17 +92,11 @@
 		model.thumbImage = [UIImage imageNamed:model.imageName];
 		[models addObject:model];
 	}
-	
-	/// 2.
+	///
 	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender
 													imageList:models//self.imgList
 														index:sender.tag];
-	
-	
 	[self presentViewController:vc animated:YES completion:nil];
-	
-	
-	
 }
 
 - (NSArray *)imgList {
@@ -136,6 +134,12 @@
 					 @"name" : @"m6",
 					 @"url"  : @"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2502557574.jpg",
 					 },
+				 
+				 @{
+					 @"name" : @"mm",
+					 @"url"  : @"https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2502557574.jpg",
+					 },
+				 
 				 ];
 	
 	return _imgList;

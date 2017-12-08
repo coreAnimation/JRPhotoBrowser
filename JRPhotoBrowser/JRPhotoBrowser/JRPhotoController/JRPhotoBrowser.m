@@ -83,6 +83,11 @@
 	[self.collectionView registerClass:[JRImageViewItem class] forCellWithReuseIdentifier:@"item"];
 	[self.view insertSubview:self.collectionView belowSubview:self.closeBtn];
 	
+	
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+	[self.collectionView scrollToItemAtIndexPath:indexPath
+								atScrollPosition:UICollectionViewScrollPositionNone
+										animated:NO];
 	/// Page
 	self.pageNumber = ({
 		UILabel *label 		= [[UILabel alloc] initWithFrame:CGRectMake(20, SCREEN_H - 50, 50, 20)];
@@ -273,22 +278,23 @@
 		self.placeImageView.frame = frame;
 	}completion:^(BOOL finished) {
 		self.collectionView.alpha = 1;
+		self.placeImageView.hidden = YES;
 	}];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear:animated];
+//	
+//	if ([self.collectionView numberOfItemsInSection:0] > self.currentIndex) {
+//		
+//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+//		
+//		[self.collectionView scrollToItemAtIndexPath:indexPath
+//									atScrollPosition:UICollectionViewScrollPositionNone
+//											animated:NO];
+//	}
 	
-	if ([self.collectionView numberOfItemsInSection:0] > self.currentIndex) {
-		
-		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
-		
-		[self.collectionView scrollToItemAtIndexPath:indexPath
-									atScrollPosition:UICollectionViewScrollPositionNone
-											animated:NO];
-	}
-	
-	self.placeImageView.hidden = YES;
+//	self.placeImageView.hidden = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

@@ -23,18 +23,13 @@
 	[self.view addSubview:sView];
 	
 	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 100, 100)];
-	view.backgroundColor = [UIColor greenColor];
-	view.layer.shadowColor = [UIColor redColor].CGColor;
+	view.backgroundColor 	= [UIColor greenColor];
+	view.layer.shadowColor 	= [UIColor redColor].CGColor;
 	view.layer.shadowOffset = CGSizeMake(2, 2);
 	view.layer.shadowRadius = 4;
 	view.layer.shadowOpacity = 1.2;
+	view.layer.cornerRadius = 4;
 	[sView addSubview:view];
-//	sView.backgroundColor = [UIColor whiteColor];
-//	sView.clipsToBounds = YES;
-	
-	[view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 0, 1, 100)] CGPath]];
-	[view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, 100, 100, 1)] CGPath]];
-	[view.layer setShadowPath:[[UIBezierPath bezierPathWithRect:CGRectMake(99, 0, 1, 100)] CGPath]];
 }
 
 - (void)didReceiveMemoryWarning {
