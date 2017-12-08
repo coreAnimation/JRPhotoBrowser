@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "SecondViewController.h"
 #import "JRTestController.h"
+#import "ThirdViewController.h"
 
 @interface AppDelegate ()
 
@@ -37,8 +38,14 @@
 	UINavigationController *navController3 = [[UINavigationController alloc] initWithRootViewController:viewVC3];
 	viewVC3.title = @"Web";
 	
+	
+//	ThirdViewController
+	ThirdViewController *viewVC4 = [ThirdViewController new];
+	UINavigationController *navController4 = [[UINavigationController alloc] initWithRootViewController:viewVC4];
+	viewVC4.title = @"Web";
+	
 	UITabBarController *tabController = [UITabBarController new];
-	tabController.viewControllers = @[navController, navController2, navController3];
+	tabController.viewControllers = @[navController, navController2, navController3, navController4];
 	
 	self.window.rootViewController = tabController;
 	
