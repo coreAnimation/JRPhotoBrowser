@@ -63,7 +63,9 @@
 		[[SDWebImageDownloader sharedDownloader] downloadImageWithURL:url options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
 			
 		} completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, BOOL finished) {
-			self.scrollView.image = image;
+			if (image) {
+				self.scrollView.image = image;
+			}
 		}];
 	}
 }
