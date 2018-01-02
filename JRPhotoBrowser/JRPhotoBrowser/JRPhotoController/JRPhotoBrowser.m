@@ -132,6 +132,9 @@
 - (void)setup {
 	/// 初始化
 	self.horizontalPadding = self.horizontalPadding == 0 ? 10 : self.horizontalPadding;
+	self.scrollTopCloseAble = YES;
+	self.scrollCloseAble = YES;
+	
 	self.view.opaque = NO;
 	self.modalPresentationCapturesStatusBarAppearance = true;
 	self.modalPresentationStyle = UIModalPresentationCustom;
@@ -167,6 +170,7 @@
 																		  action:@selector(panAction:)];
 	pan.maximumNumberOfTouches = 1;
 	pan.maximumNumberOfTouches = 1;
+	pan.delegate = self;
 	[self.view addGestureRecognizer:pan];
 }
 
@@ -264,6 +268,24 @@
 #pragma mark - Controller Method
 /// 隐藏状态栏
 - (BOOL)prefersStatusBarHidden {
+	return YES;
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+	
+	UIPanGestureRecognizer *pan = (UIPanGestureRecognizer *)gestureRecognizer;
+	
+	CGPoint velocity = [pan velocityInView:self.view];  //pan.velocity(in: self)
+	// 向上滑动时，不响应手势
+	if (velocity.y < 0 && self.scrollTopCloseAble == NO) {
+		return NO;
+	}
+	if (!self.scrollCloseAble) {
+		return NO;
+	}
+
 	return YES;
 }
 

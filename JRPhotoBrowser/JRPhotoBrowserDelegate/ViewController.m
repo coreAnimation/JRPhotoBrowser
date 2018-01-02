@@ -91,8 +91,7 @@
 
 - (void)openVC:(UITapGestureRecognizer *)gesture {
 	UIImageView *sender = (UIImageView *)gesture.view;
-	
-	
+
 	/// 1.
 	NSMutableArray *models = [NSMutableArray arrayWithCapacity:self.imgList.count];
 	
@@ -110,6 +109,7 @@
 														index:sender.tag];
 	
 	vc.horizontalPadding = 20;
+	vc.scrollTopCloseAble = NO;
 	[self presentViewController:vc animated:YES completion:nil];
 	
 	

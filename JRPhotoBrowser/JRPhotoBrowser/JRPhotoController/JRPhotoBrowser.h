@@ -16,6 +16,16 @@
 @property (nonatomic, assign) CGFloat	horizontalPadding;
 
 /**
+ 是否允许向上滑动关闭	默认:YES
+ */
+@property (nonatomic, assign) BOOL		scrollTopCloseAble;
+
+/**
+ 是否允许滑动关闭	默认:YES
+ */
+@property (nonatomic, assign) BOOL		scrollCloseAble;
+
+/**
  通过点击图片初始化
 
  @param view 源View
