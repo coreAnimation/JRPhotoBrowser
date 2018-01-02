@@ -96,6 +96,7 @@
 	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender
 													imageList:models//self.imgList
 														index:sender.tag];
+	vc.horizontalPadding = 40;
 	[self presentViewController:vc animated:YES completion:nil];
 }
 

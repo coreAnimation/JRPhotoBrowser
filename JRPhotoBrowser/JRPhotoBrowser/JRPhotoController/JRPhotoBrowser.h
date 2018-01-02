@@ -11,6 +11,11 @@
 @interface JRPhotoBrowser : UIViewController
 
 /**
+ 图片水平边距 默认:10
+ */
+@property (nonatomic, assign) CGFloat	horizontalPadding;
+
+/**
  通过点击图片初始化
 
  @param view 源View

@@ -29,6 +29,8 @@
 
 @property (nonatomic, assign) CGFloat		zoomScale;
 
+@property (nonatomic, assign) CGRect		myFrame;
+
 @end
 
 
@@ -36,13 +38,15 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
 	self = [super initWithFrame:frame];
+	self.myFrame = frame;
 	[self setup];
 	return self;
 }
 
 - (void)setup {
 	///
-	self.scrollView = [[JRZoomingScrollView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_W, SCREEN_H)];
+	CGFloat x = (self.myFrame.size.width - SCREEN_W) * 0.5;
+	self.scrollView = [[JRZoomingScrollView alloc] initWithFrame:CGRectMake(x, 0, SCREEN_W, SCREEN_H)];
 	self.scrollView.item = self;
 	[self.contentView addSubview:self.scrollView];
 }

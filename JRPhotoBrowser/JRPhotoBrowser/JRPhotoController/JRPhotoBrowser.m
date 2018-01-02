@@ -73,14 +73,17 @@
 ///
 - (void)setupContenter {
 	
+	CGRect frame = CGRectMake(-self.horizontalPadding, 0,
+							  SCREEN_W + self.horizontalPadding * 2, SCREEN_H);
 	/// collectionView
-	self.collectionView = [[JRCollectionView alloc] initWithFrame:self.view.bounds
+	self.collectionView = [[JRCollectionView alloc] initWithFrame:frame
 											 collectionViewLayout:self.layout];
 	self.collectionView.delegate = self;
 	self.collectionView.dataSource = self;
 	self.collectionView.pagingEnabled = YES;
 	self.collectionView.backgroundColor = [UIColor clearColor];
-	[self.collectionView registerClass:[JRImageViewItem class] forCellWithReuseIdentifier:@"item"];
+	[self.collectionView registerClass:[JRImageViewItem class]
+			forCellWithReuseIdentifier:@"item"];
 	[self.view insertSubview:self.collectionView belowSubview:self.closeBtn];
 	
 	
@@ -151,8 +154,9 @@
 	}
 }
 
+///
 - (void)operationWithCenterY:(CGFloat)centerY {
-	CGFloat half = SCREEN_H * 0.333;
+	CGFloat half = SCREEN_H * 0.3;
 	if (half < centerY && centerY < half * 2) {
 		[UIView animateWithDuration:0.2 animations:^{
 			self.collectionView.y = 0;
@@ -239,8 +243,10 @@
 	}
 }
 
+/// 初始化界面
 - (void)setup {
 	/// 初始化
+	self.horizontalPadding = self.horizontalPadding == 0 ? 10 : self.horizontalPadding;
 	self.view.opaque = NO;
 	self.modalPresentationCapturesStatusBarAppearance = true;
 	self.modalPresentationStyle = UIModalPresentationCustom;
@@ -322,7 +328,8 @@
 	}
 	
 	_layout = [[UICollectionViewFlowLayout alloc] init];
-	_layout.itemSize = [UIScreen mainScreen].bounds.size;
+	_layout.itemSize = CGSizeMake(SCREEN_W + self.horizontalPadding * 2, SCREEN_H);
+	//[UIScreen mainScreen].bounds.size;
 	_layout.minimumLineSpacing = 0;
 	_layout.minimumInteritemSpacing = 0;
 	_layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

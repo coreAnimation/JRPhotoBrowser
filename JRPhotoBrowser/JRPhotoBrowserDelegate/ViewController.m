@@ -112,7 +112,7 @@
 													imageList:models
 														index:sender.tag];
 	
-	
+	vc.horizontalPadding = 40;
 	[self presentViewController:vc animated:YES completion:nil];
 	
 	
