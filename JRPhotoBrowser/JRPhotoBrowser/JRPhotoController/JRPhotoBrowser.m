@@ -67,8 +67,6 @@
 	JRPhotoBrowser *pb = [JRPhotoBrowser photoBrowserWithView:view];
 	pb.currentIndex = index;
 	pb.imageModels = imgList;
-//	[pb setupContenterView];
-//	[pb setupPageNumberView];
 	return pb;
 }
 
@@ -224,6 +222,11 @@
 			} else {
 				self.collectionView.y = 0;
 			}
+			
+			CGFloat offset = fabs(self.collectionView.y);
+			CGFloat scale = 1 - offset / (SCREEN_H * 0.5);
+			NSLog(@"------------- %f - %f", offset, scale);
+			
 		}
 			break;
 			

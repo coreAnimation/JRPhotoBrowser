@@ -109,7 +109,7 @@
 														index:sender.tag];
 	
 	vc.horizontalPadding = 20;
-	vc.scrollTopCloseAble = NO;
+//	vc.scrollTopCloseAble = NO;
 	[self presentViewController:vc animated:YES completion:nil];
 	
 	
