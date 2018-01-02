@@ -21,57 +21,125 @@
 @property (nonatomic, assign) CGRect	sourceFrame;
 /// 关闭按钮
 @property (nonatomic, strong) UIButton	*closeBtn;
-
-//@property (nonatomic, strong) NSArray	*imageList;
+/// 图片模型数组
 @property (nonatomic, strong) NSArray<JRImageModel *> *imageModels;
-
+/// 当前显示图片索引
 @property (nonatomic, assign) NSInteger	currentIndex;
-
-///
+/// 图片浏览器容器
 @property (nonatomic, strong) JRCollectionView	*collectionView;
-
+/// 图片浏览器布局
 @property (nonatomic, strong) UICollectionViewFlowLayout	*layout;
-
+/// 页码显示
 @property (nonatomic, strong) UILabel		*pageNumber;
-
+/// 收拾位置
 @property (nonatomic, assign) CGFloat		offSetY;
 
 @end
 
 @implementation JRPhotoBrowser
 
+#pragma mark - Init Method
+/// 初始化
 - (instancetype)initWithCoder:(NSCoder *)aDecoder {
 	self = [super initWithCoder:aDecoder];
 	[self setup];
 	return self;
 }
 
+/// 初始化
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
 	[self setup];
 	return self;
 }
 
+/// 构造方法
 + (instancetype)photoBrowserWithView:(UIView *)view {
-
 	JRPhotoBrowser *pb = [JRPhotoBrowser new];
 	pb.fromView = view;
 	return pb;
 }
 
+/// 构造方法
 + (instancetype)photoBrowserWithView:(UIView *)view
 						   imageList:(NSArray *)imgList
 							   index:(NSInteger)index {
 	JRPhotoBrowser *pb = [JRPhotoBrowser photoBrowserWithView:view];
 	pb.currentIndex = index;
-//	pb.imageList = imgList;
 	pb.imageModels = imgList;
-	[pb setupContenter];
+//	[pb setupContenterView];
+//	[pb setupPageNumberView];
 	return pb;
 }
 
+#pragma mark - 内置方法
 ///
-- (void)setupContenter {
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.view.backgroundColor = [UIColor blackColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+
+	[self setupCloseButton];
+	[self setupContenterView];
+	[self setupPageNumberView];
+	
+	[self.view addSubview:self.placeImageView];
+	
+	CGFloat scal = (self.placeImageView.image.size.width / self.placeImageView.image.size.height);
+	CGFloat w = [UIScreen mainScreen].bounds.size.width;
+	CGFloat h = w / scal;
+	CGFloat y = ([UIScreen mainScreen].bounds.size.height - h) * 0.5;
+
+	if (y < 0) { y = 0; }
+	CGRect frame = CGRectMake(0, y, w, h);
+	
+	[UIView animateWithDuration:.3 animations:^{
+		self.placeImageView.frame = frame;
+	}completion:^(BOOL finished) {
+		self.collectionView.alpha = 1;
+		self.placeImageView.hidden = YES;
+	}];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	[super viewDidAppear:animated];
+	//
+	//	if ([self.collectionView numberOfItemsInSection:0] > self.currentIndex) {
+	//
+	//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
+	//
+	//		[self.collectionView scrollToItemAtIndexPath:indexPath
+	//									atScrollPosition:UICollectionViewScrollPositionNone
+	//											animated:NO];
+	//	}
+	
+	//	self.placeImageView.hidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+	[super viewWillDisappear:animated];
+	[UIView animateWithDuration:0.3 animations:^{
+		self.placeImageView.frame = self.sourceFrame;
+	}];
+}
+
+#pragma mark - 初始化UI
+
+/// 初始化界面
+- (void)setup {
+	/// 初始化
+	self.horizontalPadding = self.horizontalPadding == 0 ? 10 : self.horizontalPadding;
+	self.view.opaque = NO;
+	self.modalPresentationCapturesStatusBarAppearance = true;
+	self.modalPresentationStyle = UIModalPresentationCustom;
+	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+}
+
+/// 图片浏览器内容
+- (void)setupContenterView {
 	
 	CGRect frame = CGRectMake(-self.horizontalPadding, 0,
 							  SCREEN_W + self.horizontalPadding * 2, SCREEN_H);
@@ -91,6 +159,19 @@
 	[self.collectionView scrollToItemAtIndexPath:indexPath
 								atScrollPosition:UICollectionViewScrollPositionNone
 										animated:NO];
+
+	self.collectionView.alpha = 0;
+	
+	// 拖动
+	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
+																		  action:@selector(panAction:)];
+	pan.maximumNumberOfTouches = 1;
+	pan.maximumNumberOfTouches = 1;
+	[self.view addGestureRecognizer:pan];
+}
+
+/// 初始化图片页标
+- (void)setupPageNumberView {
 	/// Page
 	self.pageNumber = ({
 		UILabel *label 		= [[UILabel alloc] initWithFrame:CGRectMake(20, SCREEN_H - 50, 50, 20)];
@@ -104,15 +185,16 @@
 	
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd",
 							self.currentIndex, self.imageModels.count];
-	
-	self.collectionView.alpha = 0;
-	
-	// 拖动
-	UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self
-																		  action:@selector(panAction:)];
-	pan.maximumNumberOfTouches = 1;
-	pan.maximumNumberOfTouches = 1;
-	[self.view addGestureRecognizer:pan];
+}
+
+/// 初始化 关闭按钮
+- (void)setupCloseButton {
+	/// 关闭按钮
+	self.closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 40, 25)];
+	[self.view addSubview:self.closeBtn];
+	[self.closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
+	[self.closeBtn addTarget:self action:@selector(closeAct) forControlEvents:UIControlEventTouchUpInside];
+	self.closeBtn.backgroundColor = [UIColor orangeColor];
 }
 
 /// 拖拽方法
@@ -154,7 +236,7 @@
 	}
 }
 
-///
+/// 滑动处理
 - (void)operationWithCenterY:(CGFloat)centerY {
 	CGFloat half = SCREEN_H * 0.3;
 	if (half < centerY && centerY < half * 2) {
@@ -186,16 +268,19 @@
 }
 
 #pragma mark - JRImageViewItemDelegate
+/// 关闭浏览器
 - (void)closePhotoBrowerViewController {
 	[self closeAct];
 }
 
 #pragma mark - UICollectionViewDataSource, UICollectionViewDelegate
+/// 图片数量
 - (NSInteger)collectionView:(UICollectionView *)collectionView
 	 numberOfItemsInSection:(NSInteger)section {
 	return self.imageModels.count;
 }
 
+/// 图片Item
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
 				  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 	
@@ -209,19 +294,13 @@
 ///
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	CGFloat x = scrollView.contentOffset.x;
-//	NSLog(@"----------- AAAA");
-	NSInteger index = (x + SCREEN_W * 0.5) / SCREEN_W;
 	
+	NSInteger index = (x + SCREEN_W * 0.5) / SCREEN_W;
 	self.pageNumber.text = [NSString stringWithFormat:@"%zd/%zd",
 							index, self.imageModels.count];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView
-	   willDisplayCell:(UICollectionViewCell *)cell
-	forItemAtIndexPath:(NSIndexPath *)indexPath {
-	
-}
-
+///
 - (void)collectionView:(UICollectionView *)collectionView
   				didEndDisplayingCell:(UICollectionViewCell *)cell
 				forItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -243,73 +322,7 @@
 	}
 }
 
-/// 初始化界面
-- (void)setup {
-	/// 初始化
-	self.horizontalPadding = self.horizontalPadding == 0 ? 10 : self.horizontalPadding;
-	self.view.opaque = NO;
-	self.modalPresentationCapturesStatusBarAppearance = true;
-	self.modalPresentationStyle = UIModalPresentationCustom;
-	self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-	
-	/// 关闭按钮
-	self.closeBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 40, 25)];
-	[self.view addSubview:self.closeBtn];
-	[self.closeBtn setTitle:@"关闭" forState:UIControlStateNormal];
-	[self.closeBtn addTarget:self action:@selector(closeAct) forControlEvents:UIControlEventTouchUpInside];
-	self.closeBtn.backgroundColor = [UIColor orangeColor];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-	self.view.backgroundColor = [UIColor blackColor];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
-	
-	[self.view addSubview:self.placeImageView];
-	
-	CGFloat scal = (self.placeImageView.image.size.width / self.placeImageView.image.size.height);
-	
-	CGFloat w = [UIScreen mainScreen].bounds.size.width;
-	CGFloat h = w / scal;
-	CGFloat y = ([UIScreen mainScreen].bounds.size.height - h) * 0.5;
-	
-	
-	if (y < 0) { y = 0; }
-	CGRect frame = CGRectMake(0, y, w, h);
-	
-	[UIView animateWithDuration:.3 animations:^{
-		self.placeImageView.frame = frame;
-	}completion:^(BOOL finished) {
-		self.collectionView.alpha = 1;
-		self.placeImageView.hidden = YES;
-	}];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-//	
-//	if ([self.collectionView numberOfItemsInSection:0] > self.currentIndex) {
-//		
-//		NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.currentIndex inSection:0];
-//		
-//		[self.collectionView scrollToItemAtIndexPath:indexPath
-//									atScrollPosition:UICollectionViewScrollPositionNone
-//											animated:NO];
-//	}
-	
-//	self.placeImageView.hidden = YES;
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-	[UIView animateWithDuration:0.3 animations:^{
-		self.placeImageView.frame = self.sourceFrame;
-	}];
-}
-
+/// 关闭操作
 - (void)closeAct {
 	
 	self.view.userInteractionEnabled = NO;
@@ -321,7 +334,7 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark -
+#pragma mark - 懒加载
 - (UICollectionViewFlowLayout *)layout {
 	if (_layout) {
 		return _layout;
@@ -329,7 +342,6 @@
 	
 	_layout = [[UICollectionViewFlowLayout alloc] init];
 	_layout.itemSize = CGSizeMake(SCREEN_W + self.horizontalPadding * 2, SCREEN_H);
-	//[UIScreen mainScreen].bounds.size;
 	_layout.minimumLineSpacing = 0;
 	_layout.minimumInteritemSpacing = 0;
 	_layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;

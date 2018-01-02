@@ -89,14 +89,11 @@
 											 + (margin2 + w) * ceilf(numb / (CGFloat)count) - margin2);
 }
 
-
 - (void)openVC:(UITapGestureRecognizer *)gesture {
 	UIImageView *sender = (UIImageView *)gesture.view;
 	
 	
 	/// 1.
-//	JRPhotoBrowser *vc = [JRPhotoBrowser photoBrowserWithView:sender];
-	
 	NSMutableArray *models = [NSMutableArray arrayWithCapacity:self.imgList.count];
 	
 	///
@@ -112,7 +109,7 @@
 													imageList:models
 														index:sender.tag];
 	
-	vc.horizontalPadding = 40;
+	vc.horizontalPadding = 20;
 	[self presentViewController:vc animated:YES completion:nil];
 	
 	
